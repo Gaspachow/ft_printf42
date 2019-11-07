@@ -1,5 +1,5 @@
 
-SRCS	= ft_printf.c ft_putall.c ft_parsing.c
+SRCS	= ft_printf.c
 
 LIBFT	= libft/libft.a
 
@@ -21,7 +21,7 @@ all:	$(NAME)
 
 .PHONY:	clean fclean re bonus bench bclean
 
-$(NAME): 
+$(NAME): $(OBJS)
 	cd libft && $(MAKE)
 	cp $(LIBFT) $(NAME)
 	ar -rcs $(NAME) $(OBJS)

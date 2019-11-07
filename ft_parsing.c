@@ -6,13 +6,13 @@
 /*   By: gsmets <gsmets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 12:03:48 by gsmets            #+#    #+#             */
-/*   Updated: 2019/11/07 15:59:23 by gsmets           ###   ########.fr       */
+/*   Updated: 2019/11/07 19:18:48 by gsmets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	get_vars_count(char *str, )
+int	get_vars_count(char *str)
 {
 	int	count;
 
