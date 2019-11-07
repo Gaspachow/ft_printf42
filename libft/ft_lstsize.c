@@ -1,50 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   ft_lstsize_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gsmets <gsmets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/04 12:03:48 by gsmets            #+#    #+#             */
-/*   Updated: 2019/11/04 16:03:28 by gsmets           ###   ########.fr       */
+/*   Created: 2019/10/10 15:38:36 by gsmets            #+#    #+#             */
+/*   Updated: 2019/10/10 16:00:02 by gsmets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	get_vars_count(char *str)
+int	ft_lstsize(t_list *lst)
 {
-	int	count;
+	int		count;
+	t_list	*temp;
 
 	count = 0;
-	while (*str)
+	temp = lst;
+	while (temp)
 	{
-		if (*str == '%')
-		{
-			if (*(str + 1) == '%')
-				str += 2;
-			else
-			{
-				count++;
-				while (!(is_blank(*str)) && *str)
-					str++;
-			}
-		}
-		str++;
+		count++;
+		temp = temp->next;
 	}
 	return (count);
-}
-
-int	is_blank(char c)
-{
-	if (c == '\f' || c == '\t' || c == '\n' || c == '\r' || c == '\v' ||
-		c == ' ')
-		return (1);
-	else
-		return (0);
-}
-
-int	get_vars_type(char *str, char **ptr)
-{
-	
 }

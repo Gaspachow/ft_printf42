@@ -1,22 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsmets <gsmets@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gsmets <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/04 12:09:20 by gsmets            #+#    #+#             */
-/*   Updated: 2019/11/05 13:38:45 by gsmets           ###   ########.fr       */
+/*   Created: 2019/10/07 11:09:24 by gsmets            #+#    #+#             */
+/*   Updated: 2019/10/07 11:09:25 by gsmets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
-# include <stdarg.h>
-# include <stdlib.h>
+#include "libft.h"
 
-int	get_vars_count(char *str);
-int	is_blank(char c);
+void	*ft_memset(void *ptr, int c, size_t len)
+{
+	unsigned char *set;
 
-#endif
-
+	set = (unsigned char *)ptr;
+	while (len--)
+	{
+		*set = (unsigned char)c;
+		set++;
+	}
+	return (ptr);
+}

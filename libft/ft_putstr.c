@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gsmets <gsmets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/04 12:09:20 by gsmets            #+#    #+#             */
-/*   Updated: 2019/11/05 13:38:45 by gsmets           ###   ########.fr       */
+/*   Created: 2019/10/07 11:10:08 by gsmets            #+#    #+#             */
+/*   Updated: 2019/10/08 18:22:08 by gsmets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
-# include <stdarg.h>
-# include <stdlib.h>
+#include <unistd.h>
 
-int	get_vars_count(char *str);
-int	is_blank(char c);
+void	ft_putstr(char *str)
+{
+	int count;
 
-#endif
-
+	if (str == NULL)
+		return ;
+	count = 0;
+	while (str[count])
+		count++;
+	write(1, str, count);
+}

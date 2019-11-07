@@ -1,22 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsmets <gsmets@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gsmets <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/04 12:09:20 by gsmets            #+#    #+#             */
-/*   Updated: 2019/11/05 13:38:45 by gsmets           ###   ########.fr       */
+/*   Created: 2019/10/07 11:15:58 by gsmets            #+#    #+#             */
+/*   Updated: 2019/10/07 11:16:11 by gsmets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
-# include <stdarg.h>
-# include <stdlib.h>
+#include "libft.h"
 
-int	get_vars_count(char *str);
-int	is_blank(char c);
-
-#endif
-
+char	*ft_strchr(const char *str, int c)
+{
+	while (*str)
+	{
+		if (*str == c)
+			return ((char *)str);
+		else
+			str++;
+	}
+	if (c == '\0')
+		return ((char *)str);
+	else
+		return (NULL);
+}

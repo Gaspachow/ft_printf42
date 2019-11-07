@@ -1,22 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gsmets <gsmets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/04 12:09:20 by gsmets            #+#    #+#             */
-/*   Updated: 2019/11/05 13:38:45 by gsmets           ###   ########.fr       */
+/*   Created: 2019/10/07 16:30:08 by gsmets            #+#    #+#             */
+/*   Updated: 2019/10/08 14:03:00 by gsmets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
-# include <stdarg.h>
-# include <stdlib.h>
+#include "libft.h"
 
-int	get_vars_count(char *str);
-int	is_blank(char c);
+void	*ft_calloc(size_t n, size_t size)
+{
+	unsigned char	*ptr;
 
-#endif
-
+	if (!(ptr = malloc(n * size)))
+		return (ptr);
+	ft_memset(ptr, 0, n * size);
+	return (ptr);
+}

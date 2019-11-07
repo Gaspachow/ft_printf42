@@ -1,22 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gsmets <gsmets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/04 12:09:20 by gsmets            #+#    #+#             */
-/*   Updated: 2019/11/05 13:38:45 by gsmets           ###   ########.fr       */
+/*   Created: 2019/10/09 18:35:31 by gsmets            #+#    #+#             */
+/*   Updated: 2019/10/09 18:45:19 by gsmets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
-# include <stdarg.h>
-# include <stdlib.h>
+#include <unistd.h>
 
-int	get_vars_count(char *str);
-int	is_blank(char c);
+void	ft_putendl_fd(char *str, int fd)
+{
+	int count;
 
-#endif
-
+	if (str == NULL)
+		return ;
+	count = 0;
+	while (str[count])
+		count++;
+	write(fd, str, count);
+	write(fd, "\n", 1);
+}

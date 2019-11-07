@@ -1,22 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gsmets <gsmets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/04 12:09:20 by gsmets            #+#    #+#             */
-/*   Updated: 2019/11/05 13:38:45 by gsmets           ###   ########.fr       */
+/*   Created: 2019/10/09 16:41:47 by gsmets            #+#    #+#             */
+/*   Updated: 2019/10/16 14:14:59 by gsmets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
-# include <stdarg.h>
-# include <stdlib.h>
+#include "libft.h"
 
-int	get_vars_count(char *str);
-int	is_blank(char c);
+char	*ft_strmapi(char const *str, char (*f)(unsigned int, char))
+{
+	size_t			len;
+	char			*newstr;
+	unsigned int	i;
 
-#endif
-
+	if (!str || !f)
+		return (NULL);
+	len = ft_strlen(str);
+	if (!(newstr = malloc((len + 1) * sizeof(char))))
+		return (NULL);
+	i = 0;
+	while (str[i])
+	{
+		newstr[i] = (*f)(i, str[i]);
+		i++;
+	}
+	newstr[i] = '\0';
+	return (newstr);
+}
