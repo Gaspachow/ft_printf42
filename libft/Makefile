@@ -7,13 +7,13 @@ SRCS	+= ft_strdup.c ft_substr.c ft_strjoin.c ft_strtrim.c ft_split.c ft_itoa.c f
 
 SRCS	+= ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c ft_calloc.c
 
-B_SRCS	= $(SRCS)
+SRCS	+= ft_lstadd_back.c ft_lstadd_front.c ft_lstclear.c ft_lstdelone.c ft_lstiter.c ft_lstlast.c ft_lstmap.c
 
-B_SRCS	+= ft_lstadd_back.c ft_lstadd_front.c ft_lstclear.c ft_lstdelone.c ft_lstiter.c ft_lstlast.c ft_lstmap.c
+SRCS	+= ft_lstnew.c ft_lstsize.c
 
-B_SRCS	+= ft_lstnew.c ft_lstsize.c
+SRCS	+= ft_putnbr.c
 
-B_OBJS	= $(B_SRCS:.c=.o)
+OBJS	= $(SRCS:.c=.o)
 
 NAME	= libft.a
 
@@ -29,11 +29,11 @@ all:	$(NAME)
 
 .PHONY:	clean fclean re bonus bench bclean
 
-$(NAME):	$(B_OBJS)
-	ar -rcs $(NAME) $(B_OBJS)
+$(NAME):	$(OBJS)
+	ar -rcs $(NAME) $(OBJS)
 
 clean:
-	rm -f $(OBJS) $(B_OBJS)
+	rm -f $(OBJS) $(OBJS)
 
 fclean: clean
 	rm -f $(NAME)
