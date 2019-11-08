@@ -11,7 +11,7 @@ SRCS	+= ft_lstadd_back.c ft_lstadd_front.c ft_lstclear.c ft_lstdelone.c ft_lstit
 
 SRCS	+= ft_lstnew.c ft_lstsize.c
 
-SRCS	+= ft_putnbr.c
+SRCS	+= ft_putnbr.c ft_putunbr.c
 
 OBJS	= $(SRCS:.c=.o)
 

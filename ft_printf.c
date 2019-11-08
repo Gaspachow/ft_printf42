@@ -6,7 +6,7 @@
 /*   By: gsmets <gsmets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 13:49:18 by gsmets            #+#    #+#             */
-/*   Updated: 2019/11/08 14:54:50 by gsmets           ###   ########.fr       */
+/*   Updated: 2019/11/08 17:29:28 by gsmets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int		ft_printf(char *str, ...)
 	va_list				ap;
 
 	total_vars = get_vars_count(str);
-	printf("-- count is %i", total_vars); // -------------------------------- PRINTF
+	printf("\n\n-- count is %i\n\n", total_vars); // -------------------------------- PRINTF
 	count = 0;
 	args = malloc((total_vars + 1) * sizeof(unsigned long long *));
 	va_start(ap, str);
@@ -39,34 +39,38 @@ int		ft_printf(char *str, ...)
 int		launch_read(char *str, unsigned long long **args)
 {
 	int	count;
+	int	vars_needed;
 
 	count = 0;
 	while (*str)
 	{
 		if (*str != '%')
 			ft_putchar(*(str++));
-		else if (args[count])
-		{
-			str += ft_putall(str, args[count]);
-			count++;
-		}
 		else
-			return (0);
+		{
+			vars_needed = 1 + ft_asterisk_count(str);
+			str += ft_putall(str, &args[count]);
+			count += vars_needed;
+		}
 	}
 	return (0);
 }
 
-int		ft_putall(char *str, unsigned long long *args)
+int		ft_putall(char *str, unsigned long long **arg)
 {
 	char	type;
 
 	type = find_type(str + 1);
 	if (type == 's')
-		ft_putstr((char *)args);
+		ft_putstr((char *)*arg);
 	if (type == 'i' || type == 'd')
-	{
-		ft_putnbr((int)args);
-	}
+		ft_putnbr((int)*arg);
+	if (type == 'c')
+		ft_putchar((char)*arg);
+	if (type == 'u')
+		ft_putunbr((unsigned int)*arg);
+	if (type == '%')
+		write(1, "%", 1);
 	return (ft_var_len(str));
 }
 
@@ -74,8 +78,9 @@ int		ft_var_len(char *str)
 {
 	int	count;
 
-	count = 0;
-	while (is_fs(*str))
+	count = 2;
+	str++;
+	while (!is_type(*str))
 	{
 		str++;
 		count++;
@@ -83,7 +88,7 @@ int		ft_var_len(char *str)
 	return (count);
 }
 
-int		is_fs(char c)
+int		is_type(char c)
 {
 	if (c == 'c' || c == 's' || c == 'p' || c == 'd' || c == 'i' ||
 		c == 'u' || c == 'x' || c == 'X' || c == '%')
@@ -109,9 +114,13 @@ int		get_vars_count(char *str)
 	{
 		if (*str == '%')
 		{
-			count++;
-			while (!(is_fs(*str)) && *str)
-				str++;
+			if (*(str + 1) == '%')
+				str += 2;
+			else
+			{
+				count++;
+				str += ft_var_len(str);
+			}
 		}
 		str++;
 	}
@@ -122,9 +131,22 @@ char	find_type(char *str)
 {
 	while (*str)
 	{
-		if (is_fs(*str))
+		if (is_type(*str))
 			return (*str);
 		str++;
 	}
 	return (0);
+}
+
+int		ft_asterisk_count(char *str)
+{
+	int count;
+
+	count = 0;
+	while (!is_type(*str))
+	{
+		if (*str == '*')
+			count++;
+	}
+	return (count);
 }

@@ -1,28 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_putunbr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gsmets <gsmets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/07 11:10:08 by gsmets            #+#    #+#             */
-/*   Updated: 2019/11/08 15:28:34 by gsmets           ###   ########.fr       */
+/*   Created: 2019/10/09 18:51:12 by gsmets            #+#    #+#             */
+/*   Updated: 2019/11/08 16:12:44 by gsmets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-void	ft_putstr(char *str)
+static size_t	getputnbrlen(unsigned int n)
 {
-	int count;
+	size_t	i;
 
-	if (str == NULL)
+	i = 1;
+	while (n /= 10)
+		i++;
+	return (i);
+}
+
+void			ft_putunbr(unsigned int n)
+{
+	size_t		len;
+	int			div;
+	char		c;
+
+	div = 1;
+	len = getputnbrlen(n);
+	while (--len)
+		div *= 10;
+	while (div)
 	{
-		write(1, "(null)", 6);
-		return ;
+		c = ((n / div) % 10) + '0';
+		write(1, &c, 1);
+		div /= 10;
 	}
-	count = 0;
-	while (str[count])
-		count++;
-	write(1, str, count);
 }
