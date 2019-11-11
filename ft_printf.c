@@ -6,7 +6,7 @@
 /*   By: gsmets <gsmets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 13:49:18 by gsmets            #+#    #+#             */
-/*   Updated: 2019/11/08 17:29:28 by gsmets           ###   ########.fr       */
+/*   Updated: 2019/11/11 15:39:20 by gsmets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ int		ft_printf(char *str, ...)
 int		launch_read(char *str, unsigned long long **args)
 {
 	int	count;
-	int	vars_needed;
 
 	count = 0;
 	while (*str)
@@ -48,9 +47,8 @@ int		launch_read(char *str, unsigned long long **args)
 			ft_putchar(*(str++));
 		else
 		{
-			vars_needed = 1 + ft_asterisk_count(str);
 			str += ft_putall(str, &args[count]);
-			count += vars_needed;
+			count += 1 + ft_asterisk_count(str);
 		}
 	}
 	return (0);
@@ -59,7 +57,9 @@ int		launch_read(char *str, unsigned long long **args)
 int		ft_putall(char *str, unsigned long long **arg)
 {
 	char	type;
+	t_id	flags;
 
+	flags = ft_flag_parsing(str);
 	type = find_type(str + 1);
 	if (type == 's')
 		ft_putstr((char *)*arg);
@@ -72,6 +72,55 @@ int		ft_putall(char *str, unsigned long long **arg)
 	if (type == '%')
 		write(1, "%", 1);
 	return (ft_var_len(str));
+}
+
+t_id	ft_flag_parsing(char *str)
+{
+	int		len;
+	t_id	flags;
+
+	len = -1;
+	flags = ft_init_flags();
+	while (*str == '0' || *str == '-')
+	{
+		if (*str == '-')
+		{
+			flags.left = 1;
+			flags.zero = 0;
+		}
+		else if (*str == '0')
+			if (flags.left == 0)
+				flags.zero = 1;
+		str++;
+	}
+	return (ft_flag_width(str, &flags));
+}
+
+t_id	ft_flag_width(char *str, t_id *flags)
+{
+	if (!is_type(*str))
+		flags->width = ft_atoi(str);
+	while (ft_isdigit(*str))
+		str++;
+	if (*str == '.')
+	{
+		str++;
+		flags->precision = ft_atoi(str);
+		while (ft_isdigit(*str))
+			str++;
+	}
+	return (*flags);
+}
+
+t_id	ft_init_flags(void)
+{
+	t_id flags;
+
+	flags.precision = 0;
+	flags.width = 0;
+	flags.left = 0;
+	flags.zero = 0;
+	return (flags);
 }
 
 int		ft_var_len(char *str)
@@ -147,6 +196,7 @@ int		ft_asterisk_count(char *str)
 	{
 		if (*str == '*')
 			count++;
+		str++;
 	}
 	return (count);
 }
