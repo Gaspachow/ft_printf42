@@ -6,7 +6,7 @@
 /*   By: gsmets <gsmets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 12:03:48 by gsmets            #+#    #+#             */
-/*   Updated: 2019/11/11 19:20:33 by gsmets           ###   ########.fr       */
+/*   Updated: 2019/11/11 19:24:57 by gsmets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,20 +32,6 @@ int		launch_read(char *str, unsigned long long **args)
 	return (0);
 }
 
-int		ft_var_len(char *str)
-{
-	int	count;
-
-	count = 2;
-	str++;
-	while (!is_type(*str))
-	{
-		str++;
-		count++;
-	}
-	return (count);
-}
-
 int		is_type(char c)
 {
 	if (c == 'c' || c == 's' || c == 'p' || c == 'd' || c == 'i' ||
@@ -61,34 +47,6 @@ int		is_flag(char c)
 		return (1);
 	else
 		return (0);
-}
-
-int		get_vars_count(char *str)
-{
-	int	count;
-
-	count = 0;
-	while (*str)
-	{
-		if (*str == '%')
-		{
-			str++;
-			if (*str == '%')
-				str += 2;
-			else
-			{
-				count++;
-				while (!(is_type(*str)) && *str)
-				{
-					if (*str == '*')
-						count++;
-					str++;
-				}
-			}
-		}
-		str++;
-	}
-	return (count);
 }
 
 char	find_type(char *str)
@@ -115,4 +73,3 @@ int		ft_asterisk_count(char *str)
 	}
 	return (count);
 }
-

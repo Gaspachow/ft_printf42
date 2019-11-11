@@ -1,36 +1,55 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_var_tools.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gsmets <gsmets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/04 13:49:18 by gsmets            #+#    #+#             */
-/*   Updated: 2019/11/11 19:23:08 by gsmets           ###   ########.fr       */
+/*   Created: 2019/11/11 19:24:12 by gsmets            #+#    #+#             */
+/*   Updated: 2019/11/11 19:26:38 by gsmets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_printf(char *str, ...)
+int		ft_var_len(char *str)
 {
-	int					total_vars;
-	int					count;
-	unsigned long long	**args;
-	va_list				ap;
+	int	count;
 
-	total_vars = get_vars_count(str);
-	count = 0;
-	args = malloc((total_vars + 1) * sizeof(unsigned long long *));
-	va_start(ap, str);
-	while (count < total_vars)
+	count = 2;
+	str++;
+	while (!is_type(*str))
 	{
-		args[count] = va_arg(ap, unsigned long long *);
+		str++;
 		count++;
 	}
-	args[count] = NULL;
-	va_end(ap);
-	launch_read(str, args);
-	free(args);
-	return (1);
+	return (count);
+}
+
+int		get_vars_count(char *str)
+{
+	int	count;
+
+	count = 0;
+	while (*str)
+	{
+		if (*str == '%')
+		{
+			str++;
+			if (*str == '%')
+				str += 2;
+			else
+			{
+				count++;
+				while (!(is_type(*str)) && *str)
+				{
+					if (*str == '*')
+						count++;
+					str++;
+				}
+			}
+		}
+		str++;
+	}
+	return (count);
 }
