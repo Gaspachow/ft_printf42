@@ -6,7 +6,7 @@
 /*   By: gsmets <gsmets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 13:49:18 by gsmets            #+#    #+#             */
-/*   Updated: 2019/11/11 15:39:20 by gsmets           ###   ########.fr       */
+/*   Updated: 2019/11/11 16:25:59 by gsmets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int		ft_putall(char *str, unsigned long long **arg)
 	char	type;
 	t_id	flags;
 
-	flags = ft_flag_parsing(str);
+	flags = ft_flag_parsing(str + 1);
 	type = find_type(str + 1);
 	if (type == 's')
 		ft_putstr((char *)*arg);
@@ -99,14 +99,22 @@ t_id	ft_flag_parsing(char *str)
 t_id	ft_flag_width(char *str, t_id *flags)
 {
 	if (!is_type(*str))
-		flags->width = ft_atoi(str);
-	while (ft_isdigit(*str))
+	{
+		if (*str == '*')
+			flags->width = -2;
+		else
+			flags->width = ft_atoi(str);
+	}
+	while (ft_isdigit(*str) || *str == '*')
 		str++;
 	if (*str == '.')
 	{
 		str++;
-		flags->precision = ft_atoi(str);
-		while (ft_isdigit(*str))
+		if (*str == '*')
+			flags->precision = -2;
+		else
+			flags->precision = ft_atoi(str);
+		while (ft_isdigit(*str) || *str == '*')
 			str++;
 	}
 	return (*flags);
@@ -116,10 +124,10 @@ t_id	ft_init_flags(void)
 {
 	t_id flags;
 
-	flags.precision = 0;
-	flags.width = 0;
-	flags.left = 0;
-	flags.zero = 0;
+	flags.precision = -1;
+	flags.width = -1;
+	flags.left = -1;
+	flags.zero = -1;
 	return (flags);
 }
 
