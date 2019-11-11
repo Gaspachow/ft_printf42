@@ -6,7 +6,7 @@
 /*   By: gsmets <gsmets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 12:09:20 by gsmets            #+#    #+#             */
-/*   Updated: 2019/11/11 15:38:05 by gsmets           ###   ########.fr       */
+/*   Updated: 2019/11/11 18:11:54 by gsmets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ int				ft_asterisk_count(char *str);
 t_id			ft_flag_parsing(char *str);
 t_id			ft_flag_width(char *str, t_id *flags);
 t_id			ft_init_flags(void);
-
-
-
+void			ft_puts(t_id flags, char *str);
+void			ft_putstrn(char *str, int strlen, int totallen, int flagzero);
+void			ft_putleftstr(char *str, int strlen, int totallen);
 
 #endif
