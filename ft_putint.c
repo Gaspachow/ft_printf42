@@ -6,7 +6,7 @@
 /*   By: gsmets <gsmets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 17:35:05 by gsmets            #+#    #+#             */
-/*   Updated: 2019/11/13 18:26:58 by gsmets           ###   ########.fr       */
+/*   Updated: 2019/11/13 18:54:21 by gsmets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,11 @@ void	ft_putint(t_id flags, int num)
 		flags.zero = 0;
 	}
 	if (flags.left == 1)
+	{
+		if (flags.precision == -1)
+			flags.precision = numlen;
 		ft_putleftint(flags, num, numlen, is_negative);
+	}
 	else
 		ft_putintn(flags, num, numlen, is_negative);
 }
@@ -42,8 +46,6 @@ void	ft_putintn(t_id flags, int num, int numlen, int is_neg)
 
 	spacelen = 0;
 	c = ' ';
-	if (flags.precision == -1)
-		flags.precision = numlen;
 	preclen = flags.precision - numlen;
 	if (preclen < 0)
 		preclen = 0;

@@ -11,6 +11,6 @@ int	main()
 	// ft_printf("MINE my string is: |%-*.*s| and s2 is: |%-*s|\n", 42, 5,  str1, 30, str2);
 	// ft_printf("FT int i = |%-*.*i|\n", 20, 6, one);
 	// printf("RL int i = |%-*.*i|\n", 20, 6, one);
-	   printf("testing char |%010i|\n", one);
-	ft_printf("testing char |%010i|\n", one);
+	   printf("testing char |%010.6i|\n", one);
+	ft_printf("testing char |%010.6i|\n", one);
 }
