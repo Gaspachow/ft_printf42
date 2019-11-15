@@ -6,7 +6,7 @@
 /*   By: gsmets <gsmets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 13:49:18 by gsmets            #+#    #+#             */
-/*   Updated: 2019/11/11 19:23:08 by gsmets           ###   ########.fr       */
+/*   Updated: 2019/11/15 15:51:20 by gsmets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int		ft_printf(char *str, ...)
 	int					count;
 	unsigned long long	**args;
 	va_list				ap;
+	int					ret;
 
 	total_vars = get_vars_count(str);
 	count = 0;
@@ -30,7 +31,7 @@ int		ft_printf(char *str, ...)
 	}
 	args[count] = NULL;
 	va_end(ap);
-	launch_read(str, args);
+	ret = launch_read(str, args);
 	free(args);
-	return (1);
+	return (ret);
 }

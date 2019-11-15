@@ -6,13 +6,13 @@
 /*   By: gsmets <gsmets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 17:35:05 by gsmets            #+#    #+#             */
-/*   Updated: 2019/11/15 12:11:34 by gsmets           ###   ########.fr       */
+/*   Updated: 2019/11/15 16:03:31 by gsmets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putint(t_id flags, int num)
+int		ft_putint(t_id flags, int num)
 {
 	int			numlen;
 	int			is_negative;
@@ -38,6 +38,17 @@ void	ft_putint(t_id flags, int num)
 	}
 	else
 		ft_putintn(flags, n, numlen, is_negative);
+	return (ft_int_return(flags, numlen));
+}
+
+int		ft_int_return(t_id flags, int numlen)
+{
+	if (flags.width >= flags.precision && flags.width >= numlen)
+		return (flags.width);
+	else if (flags.precision >= flags.width && flags.precision >= numlen)
+		return (flags.precision);
+	else
+		return (numlen);
 }
 
 void	ft_putintn(t_id flags, long int num, int numlen, int is_neg)
