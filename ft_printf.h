@@ -6,7 +6,7 @@
 /*   By: gsmets <gsmets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 12:09:20 by gsmets            #+#    #+#             */
-/*   Updated: 2019/11/15 14:12:33 by gsmets           ###   ########.fr       */
+/*   Updated: 2019/11/15 14:57:03 by gsmets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,8 @@ void			ft_puthex(t_id flags, unsigned int num, char type);
 void			ft_puthexn(t_id flags, unsigned int num, int numlen, int allcaps);
 void			ft_putlefthex(t_id flags, unsigned int num, int numlen, int allcaps);
 int				gethexlen(unsigned int n);
+void			ft_putaddress(t_id flags, unsigned long long address);
+void			ft_putaddressn(t_id flags, unsigned long long address, int addrlen);
+void			ft_putleftaddress(t_id flags, unsigned long long address, int addrlen);
+int				getaddrlen(unsigned long long n);
 #endif

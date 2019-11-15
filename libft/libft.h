@@ -6,7 +6,7 @@
 /*   By: gsmets <gsmets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 11:25:57 by gsmets            #+#    #+#             */
-/*   Updated: 2019/11/15 14:09:00 by gsmets           ###   ########.fr       */
+/*   Updated: 2019/11/15 14:57:10 by gsmets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,6 @@ t_list			*ft_lstmap(t_list *l, void *(*f)(void *), void (*d)(void *));
 void			ft_putnbr(int n);
 void			ft_putunbr(unsigned int n);
 void			ft_puthexnbr(unsigned int n, int allcaps);
+void			ft_putptrnbr(unsigned long long n, int allcaps);
 
 #endif
