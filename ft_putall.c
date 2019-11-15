@@ -6,7 +6,7 @@
 /*   By: gsmets <gsmets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 13:51:58 by gsmets            #+#    #+#             */
-/*   Updated: 2019/11/13 19:03:19 by gsmets           ###   ########.fr       */
+/*   Updated: 2019/11/15 11:56:05 by gsmets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int		ft_putall(char *str, unsigned long long **arg)
 	if (type == 'c')
 		ft_putc(flags, (char)*arg);
 	if (type == 'u')
-		ft_putunbr((unsigned int)*arg);
+		ft_putuint(flags, (unsigned int)*arg);
 	if (type == '%')
 		write(1, "%", 1);
 	return (ft_var_len(str));

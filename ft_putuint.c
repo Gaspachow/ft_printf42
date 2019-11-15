@@ -1,31 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putint.c                                        :+:      :+:    :+:   */
+/*   ft_putuint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gsmets <gsmets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/12 17:35:05 by gsmets            #+#    #+#             */
-/*   Updated: 2019/11/15 12:11:34 by gsmets           ###   ########.fr       */
+/*   Created: 2019/11/15 12:00:09 by gsmets            #+#    #+#             */
+/*   Updated: 2019/11/15 12:00:10 by gsmets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putint(t_id flags, int num)
+void	ft_putuint(t_id flags, unsigned int num)
 {
-	int			numlen;
-	int			is_negative;
-	long int	n;
+	int numlen;
 
-	n = num;
-	is_negative = 0;
-	numlen = getnumlen(n);
-	if (n < 0)
-	{
-		is_negative = 1;
-		n = -n;
-	}
+	numlen = getnumlen(num);
 	if (flags.precision != -1)
 	{
 		flags.zero = 0;
@@ -34,13 +25,13 @@ void	ft_putint(t_id flags, int num)
 	{
 		if (flags.precision == -1)
 			flags.precision = numlen;
-		ft_putleftint(flags, n, numlen, is_negative);
+		ft_putleftuint(flags, num, numlen);
 	}
 	else
-		ft_putintn(flags, n, numlen, is_negative);
+		ft_putuintn(flags, num, numlen);
 }
 
-void	ft_putintn(t_id flags, long int num, int numlen, int is_neg)
+void	ft_putuintn(t_id flags, unsigned int num, int numlen)
 {
 	int		spacelen;
 	int		preclen;
@@ -52,24 +43,20 @@ void	ft_putintn(t_id flags, long int num, int numlen, int is_neg)
 	if (preclen < 0)
 		preclen = 0;
 	if (flags.width != -1)
-		spacelen = flags.width - numlen - preclen - is_neg;
+		spacelen = flags.width - numlen - preclen;
 	if (spacelen > 0)
 	{
 		if (flags.zero)
 			c = '0';
-		if (is_neg)
-			write(1, "-", 1);
 		while (spacelen--)
 			write(1, &c, 1);
 	}
-	else if (is_neg)
-		write(1, "-", 1);
 	while (preclen-- > 0)
 		write(1, "0", 1);
 	ft_putunbr(num);
 }
 
-void	ft_putleftint(t_id flags, long int num, int numlen, int is_neg)
+void	ft_putleftuint(t_id flags, unsigned int num, int numlen)
 {
 	int	spacelen;
 	int	preclen;
@@ -82,18 +69,16 @@ void	ft_putleftint(t_id flags, long int num, int numlen, int is_neg)
 	if (preclen < 0)
 		preclen = 0;
 	i = preclen;
-	if (is_neg)
-		write(1, "-", 1);
 	while (i--)
 		write(1, "0", 1);
 	ft_putunbr(num);
 	if (flags.width != -1)
-		spacelen = flags.width - numlen - preclen - is_neg;
+		spacelen = flags.width - numlen - preclen;
 	while (spacelen-- > 0)
 		write(1, " ", 1);
 }
 
-int		getnumlen(int n)
+int		getunumlen(unsigned int n)
 {
 	int	i;
 
