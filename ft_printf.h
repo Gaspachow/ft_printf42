@@ -6,7 +6,7 @@
 /*   By: gsmets <gsmets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 12:09:20 by gsmets            #+#    #+#             */
-/*   Updated: 2019/11/15 12:11:13 by gsmets           ###   ########.fr       */
+/*   Updated: 2019/11/15 14:12:33 by gsmets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,8 @@ void			ft_printminus(int flag_zero, int *num);
 void			ft_putuint(t_id flags, unsigned int num);
 void			ft_putuintn(t_id flags, unsigned int num, int numlen);
 void			ft_putleftuint(t_id flags, unsigned int num, int numlen);
-
+void			ft_puthex(t_id flags, unsigned int num, char type);
+void			ft_puthexn(t_id flags, unsigned int num, int numlen, int allcaps);
+void			ft_putlefthex(t_id flags, unsigned int num, int numlen, int allcaps);
+int				gethexlen(unsigned int n);
 #endif
