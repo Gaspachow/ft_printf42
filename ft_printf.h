@@ -6,7 +6,7 @@
 /*   By: gsmets <gsmets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 12:09:20 by gsmets            #+#    #+#             */
-/*   Updated: 2019/11/18 16:05:53 by gsmets           ###   ########.fr       */
+/*   Updated: 2019/11/18 16:12:42 by gsmets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,12 @@ void			ft_putuintn(t_id flags, unsigned int num, int numlen);
 void			ft_putleftuint(t_id flags, unsigned int num, int numlen);
 int				getunumlen(unsigned int n);
 void			ft_puthex(t_id flags, unsigned int num, char type);
-void			ft_puthexn(t_id flags, unsigned int num, int numlen, int allcaps);
-void			ft_putlefthex(t_id flags, unsigned int num, int numlen, int allcaps);
+void			ft_puthexn(t_id flags, unsigned int num, int len, int caps);
+void			ft_putlefthex(t_id flags, unsigned int num, int len, int caps);
 int				gethexlen(unsigned int n);
-void			ft_putaddress(t_id flags, unsigned long long address);
-void			ft_putaddressn(t_id flags, unsigned long long address, int addrlen);
-void			ft_putleftaddress(t_id flags, unsigned long long address, int addrlen);
+void			ft_putaddress(t_id flags, unsigned long long ad);
+void			ft_putaddressn(t_id flags, unsigned long long ad, int adlen);
+void			ft_putleftaddress(t_id flags, unsigned long long ad, int adlen);
 int				getaddrlen(unsigned long long n);
 int				ft_int_return(t_id flags, int numlen, int is_neg);
 int				ft_s_return(t_id flags, char *str, int strlen);
