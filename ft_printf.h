@@ -6,7 +6,7 @@
 /*   By: gsmets <gsmets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 12:09:20 by gsmets            #+#    #+#             */
-/*   Updated: 2019/11/18 16:12:42 by gsmets           ###   ########.fr       */
+/*   Updated: 2019/11/18 16:22:27 by gsmets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int				ft_putint(t_id flags, int num);
 void			ft_putleftint(t_id flags, long int num, int numlen, int is_neg);
 int				getnumlen(int n);
 void			ft_putintn(t_id flags, long int num, int numlen, int is_neg);
-void			ft_putc(t_id flags, char c);
+int				ft_putc(t_id flags, char c);
 void			ft_printminus(int flag_zero, int *num);
 int				ft_putuint(t_id flags, unsigned int num);
 void			ft_putuintn(t_id flags, unsigned int num, int numlen);
