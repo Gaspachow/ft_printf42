@@ -6,7 +6,7 @@
 /*   By: gsmets <gsmets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 12:09:20 by gsmets            #+#    #+#             */
-/*   Updated: 2019/11/18 16:53:08 by gsmets           ###   ########.fr       */
+/*   Updated: 2019/11/18 16:58:23 by gsmets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include "libft/libft.h"
-# include <stdio.h> // ------------------- PRINTF
 
 typedef	struct	s_id
 {
