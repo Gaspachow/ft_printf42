@@ -6,7 +6,7 @@
 /*   By: gsmets <gsmets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 17:35:05 by gsmets            #+#    #+#             */
-/*   Updated: 2019/11/15 16:03:31 by gsmets           ###   ########.fr       */
+/*   Updated: 2019/11/18 15:21:14 by gsmets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,19 @@ int		ft_putint(t_id flags, int num)
 	}
 	else
 		ft_putintn(flags, n, numlen, is_negative);
-	return (ft_int_return(flags, numlen));
+	return (ft_int_return(flags, numlen, is_negative));
 }
 
-int		ft_int_return(t_id flags, int numlen)
+int		ft_int_return(t_id flags, int numlen, int is_neg)
 {
+	if (is_neg)
+	{
+		if (flags.width <= flags.precision && flags.width >= numlen)
+			return (flags.precision + 1);
+		if (flags.width == -1 && flags.precision > numlen)
+			return (flags.precision + 1);
+		return (numlen);
+	}
 	if (flags.width >= flags.precision && flags.width >= numlen)
 		return (flags.width);
 	else if (flags.precision >= flags.width && flags.precision >= numlen)
@@ -59,21 +67,18 @@ void	ft_putintn(t_id flags, long int num, int numlen, int is_neg)
 
 	spacelen = 0;
 	c = ' ';
-	preclen = flags.precision - numlen;
+	preclen = flags.precision - numlen + is_neg;
 	if (preclen < 0)
 		preclen = 0;
 	if (flags.width != -1)
-		spacelen = flags.width - numlen - preclen - is_neg;
-	if (spacelen > 0)
-	{
-		if (flags.zero)
-			c = '0';
-		if (is_neg)
-			write(1, "-", 1);
-		while (spacelen--)
-			write(1, &c, 1);
-	}
-	else if (is_neg)
+		spacelen = flags.width - numlen - preclen;
+	if (flags.zero)
+		c = '0';
+	if (is_neg && flags.zero)
+		write(1, "-", 1);
+	while (spacelen-- > 0)
+		write(1, &c, 1);
+	if (is_neg && !flags.zero)
 		write(1, "-", 1);
 	while (preclen-- > 0)
 		write(1, "0", 1);
@@ -87,8 +92,6 @@ void	ft_putleftint(t_id flags, long int num, int numlen, int is_neg)
 	int	i;
 
 	spacelen = 0;
-	if (flags.precision == -1)
-		flags.precision = numlen;
 	preclen = flags.precision - numlen;
 	if (preclen < 0)
 		preclen = 0;
@@ -99,7 +102,7 @@ void	ft_putleftint(t_id flags, long int num, int numlen, int is_neg)
 		write(1, "0", 1);
 	ft_putunbr(num);
 	if (flags.width != -1)
-		spacelen = flags.width - numlen - preclen - is_neg;
+		spacelen = flags.width - numlen - preclen;
 	while (spacelen-- > 0)
 		write(1, " ", 1);
 }
@@ -109,6 +112,8 @@ int		getnumlen(int n)
 	int	i;
 
 	i = 1;
+	if (n < 0)
+		i++;
 	while (n /= 10)
 		i++;
 	return (i);

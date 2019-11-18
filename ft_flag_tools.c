@@ -6,7 +6,7 @@
 /*   By: gsmets <gsmets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 19:17:49 by gsmets            #+#    #+#             */
-/*   Updated: 2019/11/11 19:22:49 by gsmets           ###   ########.fr       */
+/*   Updated: 2019/11/18 15:09:51 by gsmets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ t_id	ft_flag_width(char *str, t_id *flags)
 	{
 		if (*str == '*')
 			flags->width = -2;
-		else
+		else if (ft_isdigit(*str))
 			flags->width = ft_atoi(str);
 	}
 	while (ft_isdigit(*str) || *str == '*')

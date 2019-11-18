@@ -6,7 +6,7 @@
 /*   By: gsmets <gsmets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 12:09:20 by gsmets            #+#    #+#             */
-/*   Updated: 2019/11/18 12:07:30 by gsmets           ###   ########.fr       */
+/*   Updated: 2019/11/18 14:08:26 by gsmets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void			ft_putaddress(t_id flags, unsigned long long address);
 void			ft_putaddressn(t_id flags, unsigned long long address, int addrlen);
 void			ft_putleftaddress(t_id flags, unsigned long long address, int addrlen);
 int				getaddrlen(unsigned long long n);
-int				ft_int_return(t_id flags, int numlen);
+int				ft_int_return(t_id flags, int numlen, int is_neg);
 int				ft_s_return(t_id flags, char *str, int strlen);
 
 #endif
