@@ -7,7 +7,7 @@ LIBFT	= libft/libft.a
 
 OBJS	= $(SRCS:.c=.o)
 
-NAME	= ft_printf.a
+NAME	= libftprintf.a
 
 LIBFT	= libft/libft.a
 

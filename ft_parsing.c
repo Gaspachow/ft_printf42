@@ -6,7 +6,7 @@
 /*   By: gsmets <gsmets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 12:03:48 by gsmets            #+#    #+#             */
-/*   Updated: 2019/11/15 15:48:37 by gsmets           ###   ########.fr       */
+/*   Updated: 2019/11/18 18:44:33 by gsmets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,7 @@ int		ft_asterisk_count(char *str)
 			count++;
 		str++;
 	}
+	if (*str == '%')
+		count--;
 	return (count);
 }

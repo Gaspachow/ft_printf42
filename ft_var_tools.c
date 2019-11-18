@@ -6,7 +6,7 @@
 /*   By: gsmets <gsmets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 19:24:12 by gsmets            #+#    #+#             */
-/*   Updated: 2019/11/11 19:26:38 by gsmets           ###   ########.fr       */
+/*   Updated: 2019/11/18 18:28:24 by gsmets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,11 @@ int		get_vars_count(char *str)
 		if (*str == '%')
 		{
 			str++;
+			count++;
 			if (*str == '%')
-				str += 2;
+				str++;
 			else
 			{
-				count++;
 				while (!(is_type(*str)) && *str)
 				{
 					if (*str == '*')

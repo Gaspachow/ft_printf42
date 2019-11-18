@@ -6,11 +6,12 @@
 /*   By: gsmets <gsmets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 13:49:18 by gsmets            #+#    #+#             */
-/*   Updated: 2019/11/15 15:51:20 by gsmets           ###   ########.fr       */
+/*   Updated: 2019/11/18 18:26:36 by gsmets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <stdio.h> // ------
 
 int		ft_printf(char *str, ...)
 {
