@@ -6,13 +6,13 @@
 /*   By: gsmets <gsmets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 12:03:48 by gsmets            #+#    #+#             */
-/*   Updated: 2019/11/18 18:44:33 by gsmets           ###   ########.fr       */
+/*   Updated: 2019/11/18 19:18:07 by gsmets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		launch_read(char *str, unsigned long long **args)
+int		launch_read(char *str, unsigned long long *args)
 {
 	int		count;
 	char	*tmp;

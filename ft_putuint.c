@@ -6,7 +6,7 @@
 /*   By: gsmets <gsmets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 12:00:09 by gsmets            #+#    #+#             */
-/*   Updated: 2019/11/18 16:05:08 by gsmets           ###   ########.fr       */
+/*   Updated: 2019/11/18 19:06:51 by gsmets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int		ft_putuint(t_id flags, unsigned int num)
 {
 	int numlen;
 
+	if (flags.precision == 0 && !num)
+		return (ft_null_precision(flags.width));
 	numlen = getunumlen(num);
 	if (flags.precision != -1)
 	{

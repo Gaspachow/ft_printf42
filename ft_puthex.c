@@ -6,7 +6,7 @@
 /*   By: gsmets <gsmets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 13:52:49 by gsmets            #+#    #+#             */
-/*   Updated: 2019/11/18 16:43:34 by gsmets           ###   ########.fr       */
+/*   Updated: 2019/11/18 19:06:30 by gsmets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int		ft_puthex(t_id flags, unsigned int num, char type)
 	int numlen;
 	int allcaps;
 
+	if (flags.precision == 0 && !num)
+		return (ft_null_precision(flags.width));
 	allcaps = 0;
 	numlen = gethexlen(num);
 	if (type == 'X')

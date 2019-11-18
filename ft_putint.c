@@ -6,7 +6,7 @@
 /*   By: gsmets <gsmets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 17:35:05 by gsmets            #+#    #+#             */
-/*   Updated: 2019/11/18 15:21:14 by gsmets           ###   ########.fr       */
+/*   Updated: 2019/11/18 19:02:35 by gsmets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int		ft_putint(t_id flags, int num)
 	int			is_negative;
 	long int	n;
 
+	if (flags.precision == 0 && !num)
+		return (ft_null_precision(flags.width));
 	n = num;
 	is_negative = 0;
 	numlen = getnumlen(n);
@@ -27,9 +29,7 @@ int		ft_putint(t_id flags, int num)
 		n = -n;
 	}
 	if (flags.precision != -1)
-	{
 		flags.zero = 0;
-	}
 	if (flags.left == 1)
 	{
 		if (flags.precision == -1)

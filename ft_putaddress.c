@@ -6,7 +6,7 @@
 /*   By: gsmets <gsmets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 13:52:49 by gsmets            #+#    #+#             */
-/*   Updated: 2019/11/18 16:57:00 by gsmets           ###   ########.fr       */
+/*   Updated: 2019/11/18 19:06:37 by gsmets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int		ft_putaddress(t_id flags, unsigned long long address)
 {
 	int addrlen;
 
+	if (flags.precision == 0 && !address)
+		return (ft_null_precision(flags.width));
 	addrlen = getaddrlen(address);
 	if (flags.precision != -1)
 	{
