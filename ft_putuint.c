@@ -6,17 +6,17 @@
 /*   By: gsmets <gsmets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 12:00:09 by gsmets            #+#    #+#             */
-/*   Updated: 2019/11/15 12:00:10 by gsmets           ###   ########.fr       */
+/*   Updated: 2019/11/18 16:05:08 by gsmets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putuint(t_id flags, unsigned int num)
+int		ft_putuint(t_id flags, unsigned int num)
 {
 	int numlen;
 
-	numlen = getnumlen(num);
+	numlen = getunumlen(num);
 	if (flags.precision != -1)
 	{
 		flags.zero = 0;
@@ -29,6 +29,17 @@ void	ft_putuint(t_id flags, unsigned int num)
 	}
 	else
 		ft_putuintn(flags, num, numlen);
+	return (ft_uint_return(flags, numlen));
+}
+
+int		ft_uint_return(t_id flags, int numlen)
+{
+	if (flags.width >= flags.precision && flags.width >= numlen)
+		return (flags.width);
+	else if (flags.precision >= flags.width && flags.precision >= numlen)
+		return (flags.precision);
+	else
+		return (numlen);
 }
 
 void	ft_putuintn(t_id flags, unsigned int num, int numlen)

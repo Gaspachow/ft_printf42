@@ -6,7 +6,7 @@
 /*   By: gsmets <gsmets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 12:09:20 by gsmets            #+#    #+#             */
-/*   Updated: 2019/11/18 14:08:26 by gsmets           ###   ########.fr       */
+/*   Updated: 2019/11/18 16:05:53 by gsmets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,10 @@ int				getnumlen(int n);
 void			ft_putintn(t_id flags, long int num, int numlen, int is_neg);
 void			ft_putc(t_id flags, char c);
 void			ft_printminus(int flag_zero, int *num);
-void			ft_putuint(t_id flags, unsigned int num);
+int				ft_putuint(t_id flags, unsigned int num);
 void			ft_putuintn(t_id flags, unsigned int num, int numlen);
 void			ft_putleftuint(t_id flags, unsigned int num, int numlen);
+int				getunumlen(unsigned int n);
 void			ft_puthex(t_id flags, unsigned int num, char type);
 void			ft_puthexn(t_id flags, unsigned int num, int numlen, int allcaps);
 void			ft_putlefthex(t_id flags, unsigned int num, int numlen, int allcaps);
@@ -61,5 +62,6 @@ void			ft_putleftaddress(t_id flags, unsigned long long address, int addrlen);
 int				getaddrlen(unsigned long long n);
 int				ft_int_return(t_id flags, int numlen, int is_neg);
 int				ft_s_return(t_id flags, char *str, int strlen);
+int				ft_uint_return(t_id flags, int numlen);
 
 #endif
