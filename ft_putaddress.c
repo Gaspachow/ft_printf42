@@ -6,7 +6,7 @@
 /*   By: gsmets <gsmets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 13:52:49 by gsmets            #+#    #+#             */
-/*   Updated: 2019/11/18 20:12:21 by gsmets           ###   ########.fr       */
+/*   Updated: 2019/11/18 20:16:50 by gsmets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,10 @@ int		ft_nullptr_precision(int left, int width)
 
 int		ft_ptr_return(t_id flags, int addrlen)
 {
-	if (flags.width >= (addrlen + 2))
+	if (flags.width >= (addrlen + 2) && flags.width >= (flags.precision + 2))
 		return (flags.width);
+	if (flags.precision >= addrlen)
+		return (flags.precision + 2);
 	else
 		return (addrlen + 2);
 }
