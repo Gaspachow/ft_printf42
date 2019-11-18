@@ -6,13 +6,13 @@
 /*   By: gsmets <gsmets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 13:52:49 by gsmets            #+#    #+#             */
-/*   Updated: 2019/11/15 13:59:54 by gsmets           ###   ########.fr       */
+/*   Updated: 2019/11/18 16:43:34 by gsmets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_puthex(t_id flags, unsigned int num, char type)
+int		ft_puthex(t_id flags, unsigned int num, char type)
 {
 	int numlen;
 	int allcaps;
@@ -33,6 +33,17 @@ void	ft_puthex(t_id flags, unsigned int num, char type)
 	}
 	else
 		ft_puthexn(flags, num, numlen, allcaps);
+	return (ft_hex_return(flags, numlen));
+}
+
+int		ft_hex_return(t_id flags, int numlen)
+{
+	if (flags.width >= flags.precision && flags.width >= numlen)
+		return (flags.width);
+	else if (flags.precision >= flags.width && flags.precision >= numlen)
+		return (flags.precision);
+	else
+		return (numlen);
 }
 
 void	ft_puthexn(t_id flags, unsigned int num, int numlen, int allcaps)
