@@ -6,7 +6,7 @@
 /*   By: gsmets <gsmets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 17:35:05 by gsmets            #+#    #+#             */
-/*   Updated: 2019/11/18 19:02:35 by gsmets           ###   ########.fr       */
+/*   Updated: 2019/11/18 19:46:33 by gsmets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,10 @@ int		ft_int_return(t_id flags, int numlen, int is_neg)
 		if (flags.width <= flags.precision && flags.width >= numlen)
 			return (flags.precision + 1);
 		if (flags.width == -1 && flags.precision > numlen)
+			return (flags.precision + 1);
+		if (flags.width >= flags.precision && flags.width >= numlen)
+			return (flags.width);
+		else if (flags.precision >= flags.width && flags.precision >= numlen)
 			return (flags.precision + 1);
 		return (numlen);
 	}
@@ -92,7 +96,7 @@ void	ft_putleftint(t_id flags, long int num, int numlen, int is_neg)
 	int	i;
 
 	spacelen = 0;
-	preclen = flags.precision - numlen;
+	preclen = flags.precision - numlen + is_neg;
 	if (preclen < 0)
 		preclen = 0;
 	i = preclen;
