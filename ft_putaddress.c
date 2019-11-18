@@ -6,13 +6,13 @@
 /*   By: gsmets <gsmets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 13:52:49 by gsmets            #+#    #+#             */
-/*   Updated: 2019/11/15 15:22:34 by gsmets           ###   ########.fr       */
+/*   Updated: 2019/11/18 16:57:00 by gsmets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putaddress(t_id flags, unsigned long long address)
+int		ft_putaddress(t_id flags, unsigned long long address)
 {
 	int addrlen;
 
@@ -29,6 +29,15 @@ void	ft_putaddress(t_id flags, unsigned long long address)
 	}
 	else
 		ft_putaddressn(flags, address, addrlen);
+	return (ft_ptr_return(flags, addrlen));
+}
+
+int		ft_ptr_return(t_id flags, int addrlen)
+{
+	if (flags.width >= (addrlen + 2))
+		return (flags.width);
+	else
+		return (addrlen + 2);
 }
 
 void	ft_putaddressn(t_id flags, unsigned long long address, int addrlen)
