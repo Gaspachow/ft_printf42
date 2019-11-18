@@ -6,7 +6,7 @@
 /*   By: gsmets <gsmets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 12:09:20 by gsmets            #+#    #+#             */
-/*   Updated: 2019/11/18 19:17:54 by gsmets           ###   ########.fr       */
+/*   Updated: 2019/11/18 20:11:18 by gsmets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,6 @@ int				ft_uint_return(t_id flags, int numlen);
 int				ft_hex_return(t_id flags, int numlen);
 int				ft_ptr_return(t_id flags, int adlen);
 int				ft_null_precision(int width);
+int				ft_nullptr_precision(int left, int width);
 
 #endif

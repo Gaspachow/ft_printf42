@@ -6,7 +6,7 @@
 /*   By: gsmets <gsmets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 13:52:49 by gsmets            #+#    #+#             */
-/*   Updated: 2019/11/18 19:06:37 by gsmets           ###   ########.fr       */
+/*   Updated: 2019/11/18 20:12:21 by gsmets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int		ft_putaddress(t_id flags, unsigned long long address)
 	int addrlen;
 
 	if (flags.precision == 0 && !address)
-		return (ft_null_precision(flags.width));
+		return (ft_nullptr_precision(flags.left, flags.width));
 	addrlen = getaddrlen(address);
 	if (flags.precision != -1)
 	{
@@ -32,6 +32,25 @@ int		ft_putaddress(t_id flags, unsigned long long address)
 	else
 		ft_putaddressn(flags, address, addrlen);
 	return (ft_ptr_return(flags, addrlen));
+}
+
+int		ft_nullptr_precision(int left, int width)
+{
+	int i;
+
+	i = 2;
+	if (width > 2)
+	{
+		if (left)
+			write(1, "0x", 2);
+		while (i++ < width)
+			write(1, " ", 1);
+		if (!left)
+			write(1, "0x", 2);
+		return (width);
+	}
+	write(1, "0x", 2);
+	return (2);
 }
 
 int		ft_ptr_return(t_id flags, int addrlen)
