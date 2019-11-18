@@ -6,7 +6,7 @@
 /*   By: gsmets <gsmets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 12:09:20 by gsmets            #+#    #+#             */
-/*   Updated: 2019/11/15 16:04:04 by gsmets           ###   ########.fr       */
+/*   Updated: 2019/11/18 12:07:30 by gsmets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int				ft_asterisk_count(char *str);
 t_id			ft_flag_parsing(char *str);
 t_id			ft_flag_width(char *str, t_id *flags);
 t_id			ft_init_flags(void);
-void			ft_puts(t_id flags, char *str);
+int				ft_puts(t_id flags, char *str);
 void			ft_putstrn(char *str, int strlen, int totallen, int flagzero);
 void			ft_putleftstr(char *str, int strlen, int totallen);
 int				ft_putint(t_id flags, int num);
@@ -60,5 +60,6 @@ void			ft_putaddressn(t_id flags, unsigned long long address, int addrlen);
 void			ft_putleftaddress(t_id flags, unsigned long long address, int addrlen);
 int				getaddrlen(unsigned long long n);
 int				ft_int_return(t_id flags, int numlen);
+int				ft_s_return(t_id flags, char *str, int strlen);
 
 #endif

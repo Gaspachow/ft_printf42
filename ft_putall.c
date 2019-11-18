@@ -6,7 +6,7 @@
 /*   By: gsmets <gsmets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 13:51:58 by gsmets            #+#    #+#             */
-/*   Updated: 2019/11/15 15:56:03 by gsmets           ###   ########.fr       */
+/*   Updated: 2019/11/18 11:15:05 by gsmets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ int		ft_putall(char *str, unsigned long long **arg)
 		flags.precision = (int)(*arg++);
 	type = find_type(str + 1);
 	if (type == 's')
-		ft_puts(flags, (char *)*arg);
+		return (ft_puts(flags, (char *)*arg));
 	if (type == 'i' || type == 'd')
-		return(ft_putint(flags, (int)*arg));
+		return (ft_putint(flags, (int)*arg));
 	if (type == 'c')
 		ft_putc(flags, (char)*arg);
 	if (type == 'u')

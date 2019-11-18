@@ -6,18 +6,35 @@
 /*   By: gsmets <gsmets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 19:25:30 by gsmets            #+#    #+#             */
-/*   Updated: 2019/11/11 19:25:57 by gsmets           ###   ########.fr       */
+/*   Updated: 2019/11/18 13:56:17 by gsmets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_puts(t_id flags, char *str)
+int		ft_puts(t_id flags, char *str)
 {
+	int strlen;
+
+	strlen = ft_strlen(str);
+	if (flags.precision < 0 || flags.precision > strlen)
+		flags.precision = strlen;
+	if (flags.width < 0)
+		flags.width = flags.precision;
 	if (flags.left)
 		ft_putleftstr(str, flags.precision, flags.width);
 	else
 		ft_putstrn(str, flags.precision, flags.width, flags.zero);
+	return (ft_s_return(flags, str, strlen));
+}
+
+int		ft_s_return(t_id flags, char *str, int strlen)
+{
+	if (flags.width >= flags.precision)
+		return (flags.width);
+	if (flags.precision >= flags.width)
+		return (flags.precision);
+	return (strlen);
 }
 
 void	ft_putstrn(char *str, int strlen, int totallen, int flagzero)
@@ -29,32 +46,23 @@ void	ft_putstrn(char *str, int strlen, int totallen, int flagzero)
 		c = '0';
 	else
 		c = ' ';
-	if (strlen == -1)
-		strlen = ft_strlen(str);
-	if (totallen == -1)
-		totallen = ft_strlen(str);
 	blanklen = totallen - strlen;
 	while (blanklen-- > 0)
 		write(1, &c, 1);
-	while (strlen-- && *str)
+	while (*str && strlen--)
 		write(1, str++, 1);
 }
 
 void	ft_putleftstr(char *str, int strlen, int totallen)
 {
 	int		i;
+	int		blanklen;
 
 	i = 0;
-	if (strlen == -1)
-		strlen = ft_strlen(str);
-	if (totallen == -1)
-		totallen = ft_strlen(str);
-	while (*str && strlen-- > 0)
-	{
+	blanklen = totallen - strlen;
+	while (str[i] && strlen-- > 0)
 		i++;
-		totallen--;
-	}
 	write(1, str, i);
-	while (totallen-- > 0)
+	while (blanklen-- > 0)
 		write(1, " ", 1);
 }
