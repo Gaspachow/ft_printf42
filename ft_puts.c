@@ -6,7 +6,7 @@
 /*   By: gsmets <gsmets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 19:25:30 by gsmets            #+#    #+#             */
-/*   Updated: 2019/11/18 13:56:17 by gsmets           ###   ########.fr       */
+/*   Updated: 2019/11/18 17:03:46 by gsmets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ int		ft_puts(t_id flags, char *str)
 		ft_putleftstr(str, flags.precision, flags.width);
 	else
 		ft_putstrn(str, flags.precision, flags.width, flags.zero);
-	return (ft_s_return(flags, str, strlen));
+	return (ft_s_return(flags, strlen));
 }
 
-int		ft_s_return(t_id flags, char *str, int strlen)
+int		ft_s_return(t_id flags, int strlen)
 {
 	if (flags.width >= flags.precision)
 		return (flags.width);
