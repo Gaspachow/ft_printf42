@@ -6,19 +6,17 @@
 /*   By: gsmets <gsmets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 12:03:48 by gsmets            #+#    #+#             */
-/*   Updated: 2019/11/18 19:18:07 by gsmets           ###   ########.fr       */
+/*   Updated: 2019/11/19 16:22:03 by gsmets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		launch_read(char *str, unsigned long long *args)
+int		launch_read(char *str, va_list *args)
 {
-	int		count;
 	char	*tmp;
 	int		rvalue;
 
-	count = 0;
 	rvalue = 0;
 	while (*str)
 	{
@@ -30,9 +28,8 @@ int		launch_read(char *str, unsigned long long *args)
 		else
 		{
 			tmp = str;
-			rvalue += ft_putall(str, &args[count]);
+			rvalue += ft_putall(str, args);
 			str += ft_var_len(str);
-			count += 1 + ft_asterisk_count(tmp + 1);
 		}
 	}
 	return (rvalue);

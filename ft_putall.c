@@ -6,63 +6,62 @@
 /*   By: gsmets <gsmets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 13:51:58 by gsmets            #+#    #+#             */
-/*   Updated: 2019/11/19 14:37:31 by gsmets           ###   ########.fr       */
+/*   Updated: 2019/11/19 16:30:44 by gsmets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_putall(char *str, unsigned long long *arg)
+int		ft_putall(char *str, va_list *arg)
 {
 	char	type;
 	t_id	flags;
 
 	flags = ft_flag_parsing(str + 1);
 	if (flags.width == -2 || flags.precision == -2)
-		arg += ft_flags_wildcard(&flags, arg);
+		ft_flags_wildcard(&flags, arg);
 	type = find_type(str + 1);
 	if (type == 's')
-		return (ft_puts(flags, (char *)*arg));
+		return (ft_puts(flags, va_arg(*arg, char *)));
 	if (type == 'i' || type == 'd')
-		return (ft_putint(flags, (int)*arg));
+		return (ft_putint(flags, va_arg(*arg, int)));
 	if (type == 'c')
-		return (ft_putc(flags, (char)*arg));
+		return (ft_putc(flags, va_arg(*arg, int)));
 	if (type == 'u')
-		return (ft_putuint(flags, (unsigned int)*arg));
+		return (ft_putuint(flags, va_arg(*arg, unsigned int)));
 	if (type == '%')
 		return (ft_putc(flags, '%'));
 	if (type == 'x' || type == 'X')
-		return (ft_puthex(flags, (unsigned int)*arg, type));
+		return (ft_puthex(flags, va_arg(*arg, unsigned int), type));
 	if (type == 'p')
-		return (ft_putaddress(flags, (unsigned long long)*arg));
+		return (ft_putaddress(flags, va_arg(*arg, unsigned long long int)));
 	return (0);
 }
 
-int		ft_flags_wildcard(t_id *flags, unsigned long long *arg)
+int		ft_flags_wildcard(t_id *flags, va_list *arg)
 {
-	int count;
+	int argvalue;
 
-	count = 0;
+	argvalue = 0;
 	if (flags->width == -2)
 	{
-		if ((int)(*arg) < 0)
+		argvalue = va_arg(*arg, int);
+		if (argvalue < 0)
 		{
-			flags->width = -(int)(*arg++);
+			flags->width = -argvalue;
 			flags->left = 1;
 		}
 		else
-			flags->width = (int)(*arg++);
-		count++;
+			flags->width = argvalue;
 	}
 	if (flags->precision == -2)
 	{
 		if ((int)(*arg < 0))
 			flags->precision = -1;
 		else
-			flags->precision = (int)(*arg);
-		count++;
+			flags->precision = va_arg(*arg, int);
 	}
-	return (count);
+	return (1);
 }
 
 int		ft_null_precision(int width)

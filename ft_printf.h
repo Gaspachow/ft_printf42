@@ -6,7 +6,7 @@
 /*   By: gsmets <gsmets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 12:09:20 by gsmets            #+#    #+#             */
-/*   Updated: 2019/11/19 13:29:10 by gsmets           ###   ########.fr       */
+/*   Updated: 2019/11/19 16:19:26 by gsmets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ typedef	struct	s_id
 
 int				get_vars_count(char *str);
 int				is_blank(char c);
-int				launch_read(char *str, unsigned long long *args);
+int				launch_read(char *str, va_list *args);
 int				ft_printf(char *str, ...);
-int				ft_putall(char *str, unsigned long long *args);
+int				ft_putall(char *str, va_list *args);
 int				is_type(char c);
 int				is_flag(char c);
 int				ft_var_len(char *str);
@@ -66,6 +66,6 @@ int				ft_hex_return(t_id flags, int numlen);
 int				ft_ptr_return(t_id flags, int adlen);
 int				ft_null_precision(int width);
 int				ft_nullptr_precision(int left, int width);
-int				ft_flags_wildcard(t_id *flags, unsigned long long *arg);
+int				ft_flags_wildcard(t_id *flags, va_list *arg);
 
 #endif
