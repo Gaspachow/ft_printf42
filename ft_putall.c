@@ -6,7 +6,7 @@
 /*   By: gsmets <gsmets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 13:51:58 by gsmets            #+#    #+#             */
-/*   Updated: 2019/11/18 20:00:23 by gsmets           ###   ########.fr       */
+/*   Updated: 2019/11/19 13:27:39 by gsmets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,8 @@ int		ft_putall(char *str, unsigned long long *arg)
 	t_id	flags;
 
 	flags = ft_flag_parsing(str + 1);
-	if (flags.width == -2)
-		flags.width = (int)(*arg++);
-	if (flags.precision == -2)
-		flags.precision = (int)(*arg++);
+	if (flags.width == -2 || flags.precision == -2)
+		arg += ft_flags_wildcard(&flags, arg);
 	type = find_type(str + 1);
 	if (type == 's')
 		return (ft_puts(flags, (char *)*arg));
@@ -38,6 +36,33 @@ int		ft_putall(char *str, unsigned long long *arg)
 	if (type == 'p')
 		return (ft_putaddress(flags, (unsigned long long)*arg));
 	return (ft_var_len(str));
+}
+
+int		ft_flags_wildcard(t_id *flags, unsigned long long *arg)
+{
+	int count;
+
+	count = 0;
+	if (flags->width == -2)
+	{
+		if ((int)(*arg) < 0)
+		{
+			flags->width = -(int)(*arg++);
+			flags->left = 1;
+		}
+		else
+			flags->width = (int)(*arg++);
+		count++;
+	}
+	if (flags->precision == -2)
+	{
+		if ((int)(*arg < 0))
+			flags->precision = -1;
+		else
+			flags->precision = (int)(*arg);
+		count++;
+	}
+	return (count);
 }
 
 int		ft_null_precision(int width)
