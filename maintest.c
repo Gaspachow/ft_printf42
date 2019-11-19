@@ -12,8 +12,8 @@ int	main()
 	// ft_printf("MINE my string is: |%-*.*s| and s2 is: |%-*s|\n", 42, 5,  str1, 30, str2);
 	// ft_printf("FT int i = |%-*.*i|\n", 20, 6, one);
 	// printf("RL int i = |%-*.*i|\n", 20, 6, one);
-	int i =    printf("{%*i}\n", -50, 42);
-	int j = ft_printf("{%*i}\n", -50, 42);
+	int i =    printf("{%*s}\n", -50, NULL);
+	int j = ft_printf("{%*s}\n", -50, NULL);
 
 	printf("   printf return value: %i\nft_printf return value: %i\n", i, j);
 }

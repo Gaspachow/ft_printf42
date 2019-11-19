@@ -6,7 +6,7 @@
 /*   By: gsmets <gsmets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 19:25:30 by gsmets            #+#    #+#             */
-/*   Updated: 2019/11/18 17:03:46 by gsmets           ###   ########.fr       */
+/*   Updated: 2019/11/19 13:35:37 by gsmets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int		ft_puts(t_id flags, char *str)
 {
 	int strlen;
 
+	if (!str)
+		str = "(null)";
 	strlen = ft_strlen(str);
 	if (flags.precision < 0 || flags.precision > strlen)
 		flags.precision = strlen;

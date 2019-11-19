@@ -6,7 +6,7 @@
 /*   By: gsmets <gsmets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 13:51:58 by gsmets            #+#    #+#             */
-/*   Updated: 2019/11/19 13:27:39 by gsmets           ###   ########.fr       */
+/*   Updated: 2019/11/19 13:32:21 by gsmets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,4 +77,23 @@ int		ft_null_precision(int width)
 		return (width);
 	}
 	return (0);
+}
+
+int		ft_nullptr_precision(int left, int width)
+{
+	int i;
+
+	i = 2;
+	if (width > 2)
+	{
+		if (left)
+			write(1, "0x", 2);
+		while (i++ < width)
+			write(1, " ", 1);
+		if (!left)
+			write(1, "0x", 2);
+		return (width);
+	}
+	write(1, "0x", 2);
+	return (2);
 }

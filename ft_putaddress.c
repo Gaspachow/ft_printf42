@@ -6,7 +6,7 @@
 /*   By: gsmets <gsmets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 13:52:49 by gsmets            #+#    #+#             */
-/*   Updated: 2019/11/18 20:16:50 by gsmets           ###   ########.fr       */
+/*   Updated: 2019/11/19 13:32:28 by gsmets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,25 +32,6 @@ int		ft_putaddress(t_id flags, unsigned long long address)
 	else
 		ft_putaddressn(flags, address, addrlen);
 	return (ft_ptr_return(flags, addrlen));
-}
-
-int		ft_nullptr_precision(int left, int width)
-{
-	int i;
-
-	i = 2;
-	if (width > 2)
-	{
-		if (left)
-			write(1, "0x", 2);
-		while (i++ < width)
-			write(1, " ", 1);
-		if (!left)
-			write(1, "0x", 2);
-		return (width);
-	}
-	write(1, "0x", 2);
-	return (2);
 }
 
 int		ft_ptr_return(t_id flags, int addrlen)
