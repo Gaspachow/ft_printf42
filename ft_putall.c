@@ -6,7 +6,7 @@
 /*   By: gsmets <gsmets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 13:51:58 by gsmets            #+#    #+#             */
-/*   Updated: 2019/11/19 13:32:21 by gsmets           ###   ########.fr       */
+/*   Updated: 2019/11/19 14:37:31 by gsmets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int		ft_putall(char *str, unsigned long long *arg)
 		return (ft_puthex(flags, (unsigned int)*arg, type));
 	if (type == 'p')
 		return (ft_putaddress(flags, (unsigned long long)*arg));
-	return (ft_var_len(str));
+	return (0);
 }
 
 int		ft_flags_wildcard(t_id *flags, unsigned long long *arg)
