@@ -6,7 +6,7 @@
 /*   By: gsmets <gsmets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 17:35:05 by gsmets            #+#    #+#             */
-/*   Updated: 2019/11/18 19:46:33 by gsmets           ###   ########.fr       */
+/*   Updated: 2019/11/19 14:11:13 by gsmets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ int		ft_putint(t_id flags, int num)
 		flags.zero = 0;
 	if (flags.left == 1)
 	{
-		if (flags.precision == -1)
-			flags.precision = numlen;
 		ft_putleftint(flags, n, numlen, is_negative);
 	}
 	else
@@ -70,8 +68,10 @@ void	ft_putintn(t_id flags, long int num, int numlen, int is_neg)
 	char	c;
 
 	spacelen = 0;
+	preclen = 0;
 	c = ' ';
-	preclen = flags.precision - numlen + is_neg;
+	if (flags.precision > 0)
+		preclen = flags.precision - numlen + is_neg;
 	if (preclen < 0)
 		preclen = 0;
 	if (flags.width != -1)
@@ -96,7 +96,9 @@ void	ft_putleftint(t_id flags, long int num, int numlen, int is_neg)
 	int	i;
 
 	spacelen = 0;
-	preclen = flags.precision - numlen + is_neg;
+	preclen = 0;
+	if (flags.precision > 0)
+		preclen = flags.precision - numlen + is_neg;
 	if (preclen < 0)
 		preclen = 0;
 	i = preclen;

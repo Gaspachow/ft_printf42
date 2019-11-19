@@ -6,7 +6,7 @@
 /*   By: gsmets <gsmets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 19:24:12 by gsmets            #+#    #+#             */
-/*   Updated: 2019/11/18 18:28:24 by gsmets           ###   ########.fr       */
+/*   Updated: 2019/11/19 14:32:34 by gsmets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int		ft_var_len(char *str)
 
 	count = 2;
 	str++;
-	while (!is_type(*str))
+	while (!is_type(*str) && *str)
 	{
 		str++;
 		count++;
