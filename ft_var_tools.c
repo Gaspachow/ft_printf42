@@ -6,7 +6,7 @@
 /*   By: gsmets <gsmets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 19:24:12 by gsmets            #+#    #+#             */
-/*   Updated: 2019/11/19 14:32:34 by gsmets           ###   ########.fr       */
+/*   Updated: 2019/11/20 11:36:03 by gsmets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int		ft_var_len(char *str)
 		str++;
 		count++;
 	}
+	if (!*str)
+		return (1);
 	return (count);
 }
 

@@ -6,7 +6,7 @@
 /*   By: gsmets <gsmets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 12:03:48 by gsmets            #+#    #+#             */
-/*   Updated: 2019/11/19 16:22:03 by gsmets           ###   ########.fr       */
+/*   Updated: 2019/11/20 11:32:40 by gsmets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 
 int		launch_read(char *str, va_list *args)
 {
-	char	*tmp;
 	int		rvalue;
 
 	rvalue = 0;
+	if (!str)
+		return (0);
 	while (*str)
 	{
 		if (*str != '%')
@@ -27,7 +28,6 @@ int		launch_read(char *str, va_list *args)
 		}
 		else
 		{
-			tmp = str;
 			rvalue += ft_putall(str, args);
 			str += ft_var_len(str);
 		}
